@@ -96,7 +96,7 @@ export default function Mainboard() {
 	}, [selectedKeys]);
 
 	return (
-		<section className="w-1/2 mb-2 max-h-[90vh]">
+		<section className="w-1/2 mb-2 mr-4 max-h-[90vh]">
 			<Table
 				className="h-full"
 				color={'danger'}

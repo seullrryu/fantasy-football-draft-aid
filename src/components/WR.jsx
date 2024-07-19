@@ -19,7 +19,7 @@ export default function WR() {
 	const WRs = [...players].filter((player) => player['POS'].substring(0, 2) === 'WR');
 
 	return (
-		<section>
+		<section className="m-1">
 			<Table
 				color={'danger'}
 				className="h-full"

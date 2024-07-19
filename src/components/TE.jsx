@@ -19,7 +19,7 @@ export default function TE() {
 	const TEs = [...players].filter((player) => player['POS'].substring(0, 2) === 'TE');
 
 	return (
-		<section>
+		<section className="m-1">
 			<Table
 				color={'danger'}
 				className="h-full"

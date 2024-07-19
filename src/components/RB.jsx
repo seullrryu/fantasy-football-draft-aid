@@ -19,7 +19,7 @@ export default function RB() {
 	const RBs = [...players].filter((player) => player['POS'].substring(0, 2) === 'RB');
 
 	return (
-		<section>
+		<section className="m-1">
 			<Table
 				color={'danger'}
 				className="h-full"
