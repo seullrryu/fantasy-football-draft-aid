@@ -12,7 +12,6 @@ import {
 
 export default function Drafted() {
 	const draftedPlayers = useStore((state) => state.draftedPlayers);
-	console.log('🚀 ~ Drafted ~ draftedPlayers:', draftedPlayers);
 
 	return (
 		<Table

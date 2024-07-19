@@ -96,15 +96,14 @@ export default function Mainboard() {
 	}, [selectedKeys]);
 
 	return (
-		<section>
+		<section className="w-1/2 mb-2 max-h-[90vh]">
 			<Table
+				className="h-full"
 				color={'danger'}
 				selectionMode="multiple"
-				className="w-1/3 mb-2 max-h-[90vh]"
 				aria-label="Example static collection table"
 				onSelectionChange={setSelectedKeys}
 				selectedKeys={selectedKeys}
-				defaultSelectedKeys={['Breece Hall']}
 				// topContent={topContent}
 			>
 				<TableHeader>
@@ -117,7 +116,7 @@ export default function Mainboard() {
 					<TableColumn>BYE</TableColumn>
 				</TableHeader>
 				<TableBody>
-					{mainboardPlayers.map((player, index) => {
+					{mainboardPlayers.map((player) => {
 						const color = rowColor[player['TIERS'] % 4];
 						let age = 0;
 						let year = 0;

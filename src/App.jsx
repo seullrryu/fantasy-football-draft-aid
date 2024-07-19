@@ -1,5 +1,9 @@
 import Mainboard from './components/Mainboard';
 import Drafted from './components/Drafted';
+import QB from './components/QB';
+import RB from './components/RB';
+import WR from './components/WR';
+import TE from './components/TE';
 import useStore from './store';
 import { React, useEffect } from 'react';
 
@@ -44,10 +48,18 @@ function App() {
 
 	return (
 		<main>
-			<div className="p-8">
+			<div className="flex p-8">
 				<Mainboard />
-				<Drafted />
+				<section
+					className="grid grid-cols-2 gap-2 w-1/2 mb-2 max-h-[75vh]"
+					style={{ gridTemplateRows: '45vh 45vh' }}>
+					<QB />
+					<RB />
+					<WR />
+					<TE />
+				</section>
 			</div>
+			<Drafted />
 		</main>
 	);
 }
