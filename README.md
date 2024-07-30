@@ -7,8 +7,9 @@
 
 
 # TODO
-- [ ] Search functionality for players 
+- [ ] Search functionality for drafted players 
 - [x] Local storage save drafted players
 - [ ] Reset selections (both UI and local storage)
-- [ ] Teams 
+- [x] Teams 
+- [ ] CSS Upgrades
 
