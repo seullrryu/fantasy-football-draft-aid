@@ -30,34 +30,6 @@ export default function Mainboard() {
 
 	const [filterValue, setFilterValue] = useState('');
 
-	// const getData = () => {
-	// 	fetch('../../json/test.json', {
-	// 		headers: {
-	// 			'Content-Type': 'application/json',
-	// 			Accept: 'application/json',
-	// 		},
-	// 	})
-	// 		.then((response) => {
-	// 			return response.json();
-	// 		})
-	// 		.then((json) => {
-	// 			setPlayers(json);
-	// 		});
-	// };
-	// const getPlayerInfo = () => {
-	// 	fetch('../../json/playerInfo.json', {
-	// 		headers: {
-	// 			'Content-Type': 'application/json',
-	// 			Accept: 'application/json',
-	// 		},
-	// 	})
-	// 		.then((response) => {
-	// 			return response.json();
-	// 		})
-	// 		.then((json) => {
-	// 			setInfo(json);
-	// 		});
-	// };
 	// const onSearchChange = useCallback(
 	// 	(value) => {
 	// 		if (value) {

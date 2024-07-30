@@ -4,6 +4,7 @@ import QB from './components/QB';
 import RB from './components/RB';
 import WR from './components/WR';
 import TE from './components/TE';
+import Teams from './components/Teams';
 import useStore from './store';
 import { React, useEffect } from 'react';
 import { Tabs, Tab } from '@nextui-org/react';
@@ -64,7 +65,7 @@ function App() {
 					</div>
 				</Tab>
 				<Tab key="teams" title="Teams">
-					<div></div>
+					<Teams />
 				</Tab>
 				<Tab key="drafted" title="Drafted">
 					<Drafted />
