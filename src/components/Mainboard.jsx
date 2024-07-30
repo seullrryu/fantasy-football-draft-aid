@@ -16,16 +16,18 @@ export default function Mainboard() {
 	const rowColor = ['bg-orange-100', 'bg-blue-100', 'bg-lime-100', 'bg-purple-100'];
 	const players = useStore((state) => state.players);
 	const playersInfo = useStore((state) => state.playersInfo);
-	const draftedPlayers = useStore((state) => state.draftedPlayers);
 	const setDraftedPlayers = useStore((state) => state.setDraftedPlayers);
 
-	const [selectedKeys, setSelectedKeys] = useState(new Set([]));
+	const [selectedKeys, setSelectedKeys] = useState(
+		new Set(
+			localStorage.getItem('drafted') === null
+				? []
+				: JSON.parse(localStorage.getItem('drafted'))
+		)
+	);
 
 	const mainboardPlayers = [...players];
 
-	// const [draftedPlayers, setDraftedPlayers] = useState(new Set());
-	// const [filteredPlayers, setFilteredPlayers] = useState([]);
-	// const [info, setInfo] = useState([]);
 	const [filterValue, setFilterValue] = useState('');
 
 	// const getData = () => {
@@ -93,6 +95,7 @@ export default function Mainboard() {
 
 	useEffect(() => {
 		setDraftedPlayers(selectedKeys);
+		localStorage.setItem('drafted', JSON.stringify([...selectedKeys]));
 	}, [selectedKeys]);
 
 	return (
