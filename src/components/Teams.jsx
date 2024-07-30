@@ -50,48 +50,170 @@ export default function Teams() {
 					})}
 				</DropdownMenu>
 			</Dropdown>
+			<div className="ml-28 w-1/2">
+				<Table className="mb-6" aria-label="Example static collection table">
+					<TableHeader>
+						<TableColumn>Tier</TableColumn>
+						<TableColumn>Name</TableColumn>
+						<TableColumn>POS</TableColumn>
+						<TableColumn>Age</TableColumn>
+						<TableColumn>Year</TableColumn>
+						<TableColumn>BYE</TableColumn>
+					</TableHeader>
+					<TableBody>
+						{players.map((player) => {
+							let age = 0;
+							let year = 0;
 
-			<Table
-				className="w-1/2 ml-28 mb-2 max-h-[90vh]"
-				aria-label="Example static collection table">
-				<TableHeader>
-					<TableColumn>Tier</TableColumn>
-					<TableColumn>Name</TableColumn>
-					<TableColumn>Team</TableColumn>
-					<TableColumn>POS</TableColumn>
-					<TableColumn>Age</TableColumn>
-					<TableColumn>Year</TableColumn>
-					<TableColumn>BYE</TableColumn>
-				</TableHeader>
-				<TableBody>
-					{players.map((player) => {
-						let age = 0;
-						let year = 0;
-
-						for (let i of playersInfo) {
-							if (
-								i['player'].replace(/ /g, '').toLowerCase() ===
-								player['PLAYER NAME'].replace(/ /g, '').toLowerCase()
-							) {
-								age = i['age'];
-								year = i['draft_year'];
+							for (let i of playersInfo) {
+								if (
+									i['player'].replace(/ /g, '').toLowerCase() ===
+									player['PLAYER NAME'].replace(/ /g, '').toLowerCase()
+								) {
+									age = i['age'];
+									year = i['draft_year'];
+								}
 							}
-						}
-						if (player['TEAM'] === selectedValue)
-							return (
-								<TableRow key={player['PLAYER NAME']} selected={true}>
-									<TableCell>{player['TIERS']}</TableCell>
-									<TableCell>{player['PLAYER NAME']}</TableCell>
-									<TableCell>{player['TEAM']}</TableCell>
-									<TableCell>{player['POS']}</TableCell>
-									<TableCell>{age}</TableCell>
-									<TableCell>{year}</TableCell>
-									<TableCell>{player['BYE WEEK']}</TableCell>
-								</TableRow>
-							);
-					})}
-				</TableBody>
-			</Table>
+							if (
+								player['TEAM'] === selectedValue &&
+								player['POS'].substring(0, 2) === 'QB'
+							)
+								return (
+									<TableRow key={player['PLAYER NAME']} selected={true}>
+										<TableCell>{player['TIERS']}</TableCell>
+										<TableCell className="max-w-16">{player['PLAYER NAME']}</TableCell>
+										<TableCell className="max-w-10">{player['POS']}</TableCell>
+										<TableCell>{age}</TableCell>
+										<TableCell>{year}</TableCell>
+										<TableCell>{player['BYE WEEK']}</TableCell>
+									</TableRow>
+								);
+						})}
+					</TableBody>
+				</Table>
+				<Table className="mb-6 bg-blue-100" aria-label="Example static collection table">
+					<TableHeader>
+						<TableColumn>Tier</TableColumn>
+						<TableColumn>Name</TableColumn>
+						<TableColumn>POS</TableColumn>
+						<TableColumn>Age</TableColumn>
+						<TableColumn>Year</TableColumn>
+						<TableColumn>BYE</TableColumn>
+					</TableHeader>
+					<TableBody>
+						{players.map((player) => {
+							let age = 0;
+							let year = 0;
+
+							for (let i of playersInfo) {
+								if (
+									i['player'].replace(/ /g, '').toLowerCase() ===
+									player['PLAYER NAME'].replace(/ /g, '').toLowerCase()
+								) {
+									age = i['age'];
+									year = i['draft_year'];
+								}
+							}
+							if (
+								player['TEAM'] === selectedValue &&
+								player['POS'].substring(0, 2) === 'RB'
+							)
+								return (
+									<TableRow key={player['PLAYER NAME']} selected={true}>
+										<TableCell>{player['TIERS']}</TableCell>
+										<TableCell className="max-w-16">{player['PLAYER NAME']}</TableCell>
+										<TableCell className="max-w-10">{player['POS']}</TableCell>
+										<TableCell>{age}</TableCell>
+										<TableCell>{year}</TableCell>
+										<TableCell>{player['BYE WEEK']}</TableCell>
+									</TableRow>
+								);
+						})}
+					</TableBody>
+				</Table>
+				<Table className="mb-6 bg-lime-100" aria-label="Example static collection table">
+					<TableHeader>
+						<TableColumn>Tier</TableColumn>
+						<TableColumn>Name</TableColumn>
+						<TableColumn>POS</TableColumn>
+						<TableColumn>Age</TableColumn>
+						<TableColumn>Year</TableColumn>
+						<TableColumn>BYE</TableColumn>
+					</TableHeader>
+					<TableBody>
+						{players.map((player) => {
+							let age = 0;
+							let year = 0;
+
+							for (let i of playersInfo) {
+								if (
+									i['player'].replace(/ /g, '').toLowerCase() ===
+									player['PLAYER NAME'].replace(/ /g, '').toLowerCase()
+								) {
+									age = i['age'];
+									year = i['draft_year'];
+								}
+							}
+							if (
+								player['TEAM'] === selectedValue &&
+								player['POS'].substring(0, 2) === 'WR'
+							)
+								return (
+									<TableRow key={player['PLAYER NAME']} selected={true}>
+										<TableCell>{player['TIERS']}</TableCell>
+										<TableCell className="max-w-16">{player['PLAYER NAME']}</TableCell>
+										<TableCell className="max-w-10">{player['POS']}</TableCell>
+										<TableCell>{age}</TableCell>
+										<TableCell>{year}</TableCell>
+										<TableCell>{player['BYE WEEK']}</TableCell>
+									</TableRow>
+								);
+						})}
+					</TableBody>
+				</Table>
+				<Table
+					className="mb-6 bg-purple-100"
+					aria-label="Example static collection table">
+					<TableHeader>
+						<TableColumn>Tier</TableColumn>
+						<TableColumn>Name</TableColumn>
+						<TableColumn>POS</TableColumn>
+						<TableColumn>Age</TableColumn>
+						<TableColumn>Year</TableColumn>
+						<TableColumn>BYE</TableColumn>
+					</TableHeader>
+					<TableBody>
+						{players.map((player) => {
+							let age = 0;
+							let year = 0;
+
+							for (let i of playersInfo) {
+								if (
+									i['player'].replace(/ /g, '').toLowerCase() ===
+									player['PLAYER NAME'].replace(/ /g, '').toLowerCase()
+								) {
+									age = i['age'];
+									year = i['draft_year'];
+								}
+							}
+							if (
+								player['TEAM'] === selectedValue &&
+								player['POS'].substring(0, 2) === 'TE'
+							)
+								return (
+									<TableRow key={player['PLAYER NAME']} selected={true}>
+										<TableCell>{player['TIERS']}</TableCell>
+										<TableCell className="max-w-16">{player['PLAYER NAME']}</TableCell>
+										<TableCell className="max-w-10">{player['POS']}</TableCell>
+										<TableCell>{age}</TableCell>
+										<TableCell>{year}</TableCell>
+										<TableCell>{player['BYE WEEK']}</TableCell>
+									</TableRow>
+								);
+						})}
+					</TableBody>
+				</Table>
+			</div>
 		</section>
 	);
 }
