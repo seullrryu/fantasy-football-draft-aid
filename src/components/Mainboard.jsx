@@ -8,8 +8,7 @@ import {
 	TableBody,
 	TableRow,
 	TableCell,
-	Input,
-	getKeyValue,
+	Button,
 } from '@nextui-org/react';
 
 export default function Mainboard() {
@@ -27,43 +26,6 @@ export default function Mainboard() {
 	);
 
 	const mainboardPlayers = [...players];
-
-	const [filterValue, setFilterValue] = useState('');
-
-	// const onSearchChange = useCallback(
-	// 	(value) => {
-	// 		if (value) {
-	// 			const idk = [...players].filter((player) => {
-	// 				player['PLAYER NAME'].length > 20;
-	// 			});
-	// 			setFilteredPlayers(idk);
-	// 			setPlayers(filteredPlayers);
-	// 			setFilterValue(value);
-	// 		} else {
-	// 			setFilterValue('');
-	// 		}
-	// 	},
-	// 	[players, filteredPlayers]
-	// );
-	// const onClear = useCallback(() => {
-	// 	setFilterValue('');
-	// }, []);
-	// const topContent = useMemo(() => {
-	// 	return (
-	// 		<div className="flex flex-col gap-4">
-	// 			<div className="flex justify-between gap-3 items-end">
-	// 				<Input
-	// 					isClearable
-	// 					className="w-full"
-	// 					placeholder="Search by name..."
-	// 					value={filterValue}
-	// 					onClear={() => onClear()}
-	// 					onValueChange={onSearchChange}
-	// 				/>
-	// 			</div>
-	// 		</div>
-	// 	);
-	// }, [filterValue, players.length, onSearchChange]);
 
 	useEffect(() => {
 		setDraftedPlayers(selectedKeys);
@@ -121,6 +83,16 @@ export default function Mainboard() {
 					})}
 				</TableBody>
 			</Table>
+			<Button
+				color="primary"
+				variant="shadow"
+				className="mt-8 capitalize"
+				onClick={() => {
+					localStorage.removeItem('drafted');
+					window.location.reload();
+				}}>
+				Reset
+			</Button>
 		</section>
 	);
 }

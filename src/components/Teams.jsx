@@ -27,6 +27,41 @@ export default function Teams() {
 		[selectedTeam]
 	);
 
+	const offensiveLineRankings = [
+		'Detroit Lions',
+		'Philadelphia Eagles',
+		'Atlanta Falcons',
+		'Cleveland Browns',
+		'Kansas City Chiefs',
+		'Indianapolis Colts',
+		'Los Angeles Chargers',
+		'New York Jets',
+		'Minnesota Vikings',
+		'Los Angeles Rams',
+		'Cincinnati Bengals',
+		'Houston Texans',
+		'Dallas Cowboys',
+		'Buffalo Bills',
+		'Pittsburgh Steelers',
+		'Denver Broncos',
+		'Tampa Bay Buccaneers',
+		'San Francisco 49ers',
+		'Green Bay Packers',
+		'Chicago Bears',
+		'Baltimore Ravens',
+		'Las Vegas Raiders',
+		'Jacksonville Jaguars',
+		'Carolina Panthers',
+		'Miami Dolphins',
+		'Arizona Cardinals',
+		'Tennessee Titans',
+		'Seattle Seahawks',
+		'New England Patriots',
+		'New York Giants',
+		'New Orleans Saints',
+		'Washington Commanders',
+	];
+
 	useEffect(() => {
 		setTeams([...new Set(playersInfo.map((player) => player.team).sort())]);
 	}, []);
@@ -50,7 +85,7 @@ export default function Teams() {
 					})}
 				</DropdownMenu>
 			</Dropdown>
-			<div className="ml-28 w-1/2">
+			<div className="ml-28 mr-6 w-1/2">
 				<Table className="mb-6" aria-label="Example static collection table">
 					<TableHeader>
 						<TableColumn>Tier</TableColumn>
@@ -79,7 +114,10 @@ export default function Teams() {
 								player['POS'].substring(0, 2) === 'QB'
 							)
 								return (
-									<TableRow key={player['PLAYER NAME']} selected={true}>
+									<TableRow
+										className="bg-orange-100"
+										key={player['PLAYER NAME']}
+										selected={true}>
 										<TableCell>{player['TIERS']}</TableCell>
 										<TableCell className="max-w-16">{player['PLAYER NAME']}</TableCell>
 										<TableCell className="max-w-10">{player['POS']}</TableCell>
@@ -119,7 +157,10 @@ export default function Teams() {
 								player['POS'].substring(0, 2) === 'RB'
 							)
 								return (
-									<TableRow key={player['PLAYER NAME']} selected={true}>
+									<TableRow
+										className="bg-blue-100"
+										key={player['PLAYER NAME']}
+										selected={true}>
 										<TableCell>{player['TIERS']}</TableCell>
 										<TableCell className="max-w-16">{player['PLAYER NAME']}</TableCell>
 										<TableCell className="max-w-10">{player['POS']}</TableCell>
@@ -159,7 +200,10 @@ export default function Teams() {
 								player['POS'].substring(0, 2) === 'WR'
 							)
 								return (
-									<TableRow key={player['PLAYER NAME']} selected={true}>
+									<TableRow
+										className="bg-lime-100"
+										key={player['PLAYER NAME']}
+										selected={true}>
 										<TableCell>{player['TIERS']}</TableCell>
 										<TableCell className="max-w-16">{player['PLAYER NAME']}</TableCell>
 										<TableCell className="max-w-10">{player['POS']}</TableCell>
@@ -171,9 +215,7 @@ export default function Teams() {
 						})}
 					</TableBody>
 				</Table>
-				<Table
-					className="mb-6 bg-purple-100"
-					aria-label="Example static collection table">
+				<Table className="mb-6" aria-label="Example static collection table">
 					<TableHeader>
 						<TableColumn>Tier</TableColumn>
 						<TableColumn>Name</TableColumn>
@@ -201,7 +243,10 @@ export default function Teams() {
 								player['POS'].substring(0, 2) === 'TE'
 							)
 								return (
-									<TableRow key={player['PLAYER NAME']} selected={true}>
+									<TableRow
+										className="bg-purple-100"
+										key={player['PLAYER NAME']}
+										selected={true}>
 										<TableCell>{player['TIERS']}</TableCell>
 										<TableCell className="max-w-16">{player['PLAYER NAME']}</TableCell>
 										<TableCell className="max-w-10">{player['POS']}</TableCell>
@@ -210,6 +255,27 @@ export default function Teams() {
 										<TableCell>{player['BYE WEEK']}</TableCell>
 									</TableRow>
 								);
+						})}
+					</TableBody>
+				</Table>
+			</div>
+			<div className="w-1/3">
+				<a className="text-center underline" href="https://www.thescore.com/news/3044100">
+					2024 Offensive Line Rankings
+				</a>
+				<Table className="mt-6 max-h-[75vh]" aria-label="Example static collection table">
+					<TableHeader>
+						<TableColumn>Rank</TableColumn>
+						<TableColumn>Team</TableColumn>
+					</TableHeader>
+					<TableBody>
+						{offensiveLineRankings.map((team, index) => {
+							return (
+								<TableRow className="bg-sky-100" key={team} selected={true}>
+									<TableCell>{index + 1}</TableCell>
+									<TableCell className="">{team}</TableCell>
+								</TableRow>
+							);
 						})}
 					</TableBody>
 				</Table>

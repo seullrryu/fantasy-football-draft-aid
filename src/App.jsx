@@ -7,14 +7,14 @@ import TE from './components/TE';
 import Teams from './components/Teams';
 import useStore from './store';
 import { React, useEffect } from 'react';
-import { Tabs, Tab } from '@nextui-org/react';
+import { Tabs, Tab, Button } from '@nextui-org/react';
 
 function App() {
 	const setPlayers = useStore((state) => state.setPlayers);
 	const setPlayersInfo = useStore((state) => state.setPlayersInfo);
 
 	const getData = () => {
-		fetch('../json/test.json', {
+		fetch('../json/rankings.json', {
 			headers: {
 				'Content-Type': 'application/json',
 				Accept: 'application/json',
