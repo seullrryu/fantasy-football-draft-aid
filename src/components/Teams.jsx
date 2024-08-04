@@ -10,7 +10,7 @@ import {
 	Dropdown,
 	DropdownTrigger,
 	DropdownMenu,
-	DropdownSection,
+	Link,
 	DropdownItem,
 	Button,
 } from '@nextui-org/react';
@@ -86,7 +86,8 @@ export default function Teams() {
 				</DropdownMenu>
 			</Dropdown>
 			<div className="ml-28 mr-6 w-1/2">
-				<Table className="mb-6" aria-label="Example static collection table">
+				<h2 className="text-center">Depth Chart</h2>
+				<Table className="my-6" aria-label="Example static collection table">
 					<TableHeader>
 						<TableColumn>Tier</TableColumn>
 						<TableColumn>Name</TableColumn>
@@ -260,10 +261,10 @@ export default function Teams() {
 				</Table>
 			</div>
 			<div className="w-1/3">
-				<a className="text-center underline" href="https://www.thescore.com/news/3044100">
+				<Link className="text-center" href="https://www.thescore.com/news/3044100">
 					2024 Offensive Line Rankings
-				</a>
-				<Table className="mt-6 max-h-[75vh]" aria-label="Example static collection table">
+				</Link>
+				<Table className="mt-6 max-h-[80vh]" aria-label="Example static collection table">
 					<TableHeader>
 						<TableColumn>Rank</TableColumn>
 						<TableColumn>Team</TableColumn>

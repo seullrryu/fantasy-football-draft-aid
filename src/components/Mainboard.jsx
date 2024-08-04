@@ -84,7 +84,7 @@ export default function Mainboard() {
 				</TableBody>
 			</Table>
 			<Button
-				color="primary"
+				color="danger"
 				variant="shadow"
 				className="mt-8 capitalize"
 				onClick={() => {
