@@ -7,45 +7,61 @@ import TE from './components/TE';
 import Teams from './components/Teams';
 import useStore from './store';
 import { React, useEffect } from 'react';
-import { Tabs, Tab, Button } from '@nextui-org/react';
+import { Tabs, Tab } from '@nextui-org/react';
+import Info from '../json/playerInfo.json';
 
 function App() {
 	const setPlayers = useStore((state) => state.setPlayers);
-	const setPlayersInfo = useStore((state) => state.setPlayersInfo);
 
-	const getData = () => {
-		fetch('../json/rankings.json', {
-			headers: {
-				'Content-Type': 'application/json',
-				Accept: 'application/json',
-			},
-		})
-			.then((response) => {
-				return response.json();
-			})
-			.then((json) => {
-				setPlayers(json);
-			});
-	};
+	const getData = async () => {
+		// This is if you want to use fantasy pros rankings
+		// fetch('../json/rankings.json', {
+		// 	headers: {
+		// 		'Content-Type': 'application/json',
+		// 		Accept: 'application/json',
+		// 	},
+		// })
+		// 	.then((response) => {
+		// 		return response.json();
+		// 	})
+		// 	.then((json) => {
+		// 		setPlayers(json);
+		// 	});
 
-	const getPlayerInfo = () => {
-		fetch('../json/playerInfo.json', {
-			headers: {
-				'Content-Type': 'application/json',
-				Accept: 'application/json',
-			},
-		})
-			.then((response) => {
-				return response.json();
-			})
-			.then((json) => {
-				setPlayersInfo(json);
+		// This is for using boris chen rankings via Jay Zheng's API
+		try {
+			const response = await fetch(
+				'https://jayzheng-ff-api.herokuapp.com/rankings?format=half_ppr'
+			);
+			if (!response.ok) {
+				throw new Error(`Response status: ${response.status}`);
+			}
+			const json = await response.json();
+			let mainboardPlayers = [...json['rankings']];
+
+			mainboardPlayers.forEach((player) => {
+				for (let i of Info) {
+					if (
+						i['player'].replace(/ /g, '').toLowerCase() ===
+						player['name'].replace(/ /g, '').toLowerCase()
+					) {
+						player['age'] = i['age'];
+						player['TEAM'] = i['team'];
+						player['year'] = i['draft_year'];
+					}
+				}
 			});
+
+			mainboardPlayers = mainboardPlayers.sort((a, b) => a.average_rank - b.average_rank);
+
+			setPlayers(mainboardPlayers);
+		} catch (error) {
+			console.error(error.message);
+		}
 	};
 
 	useEffect(() => {
 		getData();
-		getPlayerInfo();
 	}, []);
 
 	return (

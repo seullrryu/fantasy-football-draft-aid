@@ -1,5 +1,6 @@
 import { React, useEffect, useState, useMemo, useCallback } from 'react';
 import useStore from '../store';
+import Info from '../../json/playerInfo.json';
 
 import {
 	Table,
@@ -13,10 +14,10 @@ import {
 export default function QB() {
 	const rowColor = ['bg-orange-100', 'bg-blue-100', 'bg-lime-100', 'bg-purple-100'];
 	const players = useStore((state) => state.players);
-	const playersInfo = useStore((state) => state.playersInfo);
 	const draftedPlayers = useStore((state) => state.draftedPlayers);
 
-	const QBs = [...players].filter((player) => player['POS'].substring(0, 2) === 'QB');
+	// const QBs = [...players].filter((player) => player['POS'].substring(0, 2) === 'QB');
+	const QBs = [...players].filter((player) => player['position'] === 'QB');
 
 	return (
 		<section className="m-1">
@@ -24,7 +25,7 @@ export default function QB() {
 				color={'danger'}
 				className="h-full"
 				aria-label="Example static collection table">
-				<TableHeader>
+				{/* <TableHeader>
 					<TableColumn>Tier</TableColumn>
 					<TableColumn>Name</TableColumn>
 					<TableColumn>Team</TableColumn>
@@ -32,14 +33,23 @@ export default function QB() {
 					<TableColumn>Age</TableColumn>
 					<TableColumn>Year</TableColumn>
 					<TableColumn>BYE</TableColumn>
+				</TableHeader> */}
+				<TableHeader>
+					<TableColumn>Rank</TableColumn>
+					<TableColumn>Tier</TableColumn>
+					<TableColumn>Name</TableColumn>
+					<TableColumn>Team</TableColumn>
+					<TableColumn>POS</TableColumn>
+					<TableColumn>Age</TableColumn>
+					<TableColumn>Year</TableColumn>
 				</TableHeader>
 				<TableBody>
-					{QBs.map((player) => {
+					{/* {QBs.map((player) => {
 						const color = rowColor[player['TIERS'] % 4];
 						let age = 0;
 						let year = 0;
 
-						for (let i of playersInfo) {
+						for (let i of Info) {
 							if (
 								i['player'].replace(/ /g, '').toLowerCase() ===
 								player['PLAYER NAME'].replace(/ /g, '').toLowerCase()
@@ -62,6 +72,22 @@ export default function QB() {
 									<TableCell>{age}</TableCell>
 									<TableCell>{year}</TableCell>
 									<TableCell>{player['BYE WEEK']}</TableCell>
+								</TableRow>
+							);
+						}
+					})} */}
+					{QBs.map((player) => {
+						const color = rowColor[player['tier'] % 4];
+						if (draftedPlayers !== 'all' && !draftedPlayers.has(player['name'])) {
+							return (
+								<TableRow className={color} key={player['name']} selected={true}>
+									<TableCell>{player['average_rank']}</TableCell>
+									<TableCell>{player['tier']}</TableCell>
+									<TableCell>{player['name']}</TableCell>
+									<TableCell>{player['TEAM']}</TableCell>
+									<TableCell>{player['position']}</TableCell>
+									<TableCell>{player['age']}</TableCell>
+									<TableCell>{player['year']}</TableCell>
 								</TableRow>
 							);
 						}

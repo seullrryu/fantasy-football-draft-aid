@@ -4,7 +4,8 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"dev": "csvtojson ./csv/FantasyPros_2024_Draft_ALL_Rankings.csv > ./json/rankings.json && csvtojson ./csv/values-players.csv > ./json/playerInfo.json && vite",
+		"fantasypros": "csvtojson ./csv/FantasyPros_2024_Draft_ALL_Rankings.csv > ./json/rankings.json && csvtojson ./csv/values-players.csv > ./json/playerInfo.json && vite",
+		"dev": "csvtojson ./csv/values-players.csv > ./json/playerInfo.json && vite",
 		"build": "vite build",
 		"lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
 		"preview": "vite preview"

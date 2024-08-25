@@ -14,11 +14,10 @@ import {
 	DropdownItem,
 	Button,
 } from '@nextui-org/react';
+import Info from '../../json/playerInfo.json';
 
 export default function Teams() {
 	const players = useStore((state) => state.players);
-	const playersInfo = useStore((state) => state.playersInfo);
-
 	const [teams, setTeams] = useState([]);
 	const [selectedTeam, setSelectedTeam] = useState(new Set(['KC']));
 
@@ -63,7 +62,7 @@ export default function Teams() {
 	];
 
 	useEffect(() => {
-		setTeams([...new Set(playersInfo.map((player) => player.team).sort())]);
+		setTeams([...new Set(players.map((player) => player.TEAM).sort())]);
 	}, []);
 
 	return (
@@ -89,6 +88,39 @@ export default function Teams() {
 				<h2 className="text-center">Depth Chart</h2>
 				<Table className="my-6" aria-label="Example static collection table">
 					<TableHeader>
+						<TableColumn>Rank</TableColumn>
+						<TableColumn>Tier</TableColumn>
+						<TableColumn>Name</TableColumn>
+						<TableColumn>Team</TableColumn>
+						<TableColumn>POS</TableColumn>
+						<TableColumn>Age</TableColumn>
+						<TableColumn>Year</TableColumn>
+					</TableHeader>
+					<TableBody>
+						{players.map((player) => {
+							if (
+								player['TEAM'] === selectedValue &&
+								player['position'].substring(0, 2) === 'QB'
+							) {
+								return (
+									<TableRow
+										className={'bg-orange-100'}
+										key={player['name']}
+										selected={true}>
+										<TableCell>{player['average_rank']}</TableCell>
+										<TableCell>{player['tier']}</TableCell>
+										<TableCell>{player['name']}</TableCell>
+										<TableCell>{player['TEAM']}</TableCell>
+										<TableCell>{player['position']}</TableCell>
+										<TableCell>{player['age']}</TableCell>
+										<TableCell>{player['year']}</TableCell>
+									</TableRow>
+								);
+							}
+						})}
+					</TableBody>
+
+					{/* <TableHeader>
 						<TableColumn>Tier</TableColumn>
 						<TableColumn>Name</TableColumn>
 						<TableColumn>POS</TableColumn>
@@ -101,7 +133,7 @@ export default function Teams() {
 							let age = 0;
 							let year = 0;
 
-							for (let i of playersInfo) {
+							for (let i of Info) {
 								if (
 									i['player'].replace(/ /g, '').toLowerCase() ===
 									player['PLAYER NAME'].replace(/ /g, '').toLowerCase()
@@ -128,10 +160,10 @@ export default function Teams() {
 									</TableRow>
 								);
 						})}
-					</TableBody>
+					</TableBody> */}
 				</Table>
 				<Table className="mb-6 bg-blue-100" aria-label="Example static collection table">
-					<TableHeader>
+					{/* <TableHeader>
 						<TableColumn>Tier</TableColumn>
 						<TableColumn>Name</TableColumn>
 						<TableColumn>POS</TableColumn>
@@ -144,7 +176,7 @@ export default function Teams() {
 							let age = 0;
 							let year = 0;
 
-							for (let i of playersInfo) {
+							for (let i of Info) {
 								if (
 									i['player'].replace(/ /g, '').toLowerCase() ===
 									player['PLAYER NAME'].replace(/ /g, '').toLowerCase()
@@ -171,10 +203,42 @@ export default function Teams() {
 									</TableRow>
 								);
 						})}
+					</TableBody> */}
+					<TableHeader>
+						<TableColumn>Rank</TableColumn>
+						<TableColumn>Tier</TableColumn>
+						<TableColumn>Name</TableColumn>
+						<TableColumn>Team</TableColumn>
+						<TableColumn>POS</TableColumn>
+						<TableColumn>Age</TableColumn>
+						<TableColumn>Year</TableColumn>
+					</TableHeader>
+					<TableBody>
+						{players.map((player) => {
+							if (
+								player['TEAM'] === selectedValue &&
+								player['position'].substring(0, 2) === 'RB'
+							) {
+								return (
+									<TableRow
+										className={'bg-blue-100'}
+										key={player['name']}
+										selected={true}>
+										<TableCell>{player['average_rank']}</TableCell>
+										<TableCell>{player['tier']}</TableCell>
+										<TableCell>{player['name']}</TableCell>
+										<TableCell>{player['TEAM']}</TableCell>
+										<TableCell>{player['position']}</TableCell>
+										<TableCell>{player['age']}</TableCell>
+										<TableCell>{player['year']}</TableCell>
+									</TableRow>
+								);
+							}
+						})}
 					</TableBody>
 				</Table>
 				<Table className="mb-6 bg-lime-100" aria-label="Example static collection table">
-					<TableHeader>
+					{/* <TableHeader>
 						<TableColumn>Tier</TableColumn>
 						<TableColumn>Name</TableColumn>
 						<TableColumn>POS</TableColumn>
@@ -187,7 +251,7 @@ export default function Teams() {
 							let age = 0;
 							let year = 0;
 
-							for (let i of playersInfo) {
+							for (let i of Info) {
 								if (
 									i['player'].replace(/ /g, '').toLowerCase() ===
 									player['PLAYER NAME'].replace(/ /g, '').toLowerCase()
@@ -214,10 +278,42 @@ export default function Teams() {
 									</TableRow>
 								);
 						})}
+					</TableBody> */}
+					<TableHeader>
+						<TableColumn>Rank</TableColumn>
+						<TableColumn>Tier</TableColumn>
+						<TableColumn>Name</TableColumn>
+						<TableColumn>Team</TableColumn>
+						<TableColumn>POS</TableColumn>
+						<TableColumn>Age</TableColumn>
+						<TableColumn>Year</TableColumn>
+					</TableHeader>
+					<TableBody>
+						{players.map((player) => {
+							if (
+								player['TEAM'] === selectedValue &&
+								player['position'].substring(0, 2) === 'WR'
+							) {
+								return (
+									<TableRow
+										className={'bg-lime-100'}
+										key={player['name']}
+										selected={true}>
+										<TableCell>{player['average_rank']}</TableCell>
+										<TableCell>{player['tier']}</TableCell>
+										<TableCell>{player['name']}</TableCell>
+										<TableCell>{player['TEAM']}</TableCell>
+										<TableCell>{player['position']}</TableCell>
+										<TableCell>{player['age']}</TableCell>
+										<TableCell>{player['year']}</TableCell>
+									</TableRow>
+								);
+							}
+						})}
 					</TableBody>
 				</Table>
 				<Table className="mb-6" aria-label="Example static collection table">
-					<TableHeader>
+					{/* <TableHeader>
 						<TableColumn>Tier</TableColumn>
 						<TableColumn>Name</TableColumn>
 						<TableColumn>POS</TableColumn>
@@ -230,7 +326,7 @@ export default function Teams() {
 							let age = 0;
 							let year = 0;
 
-							for (let i of playersInfo) {
+							for (let i of Info) {
 								if (
 									i['player'].replace(/ /g, '').toLowerCase() ===
 									player['PLAYER NAME'].replace(/ /g, '').toLowerCase()
@@ -256,6 +352,38 @@ export default function Teams() {
 										<TableCell>{player['BYE WEEK']}</TableCell>
 									</TableRow>
 								);
+						})}
+					</TableBody> */}
+					<TableHeader>
+						<TableColumn>Rank</TableColumn>
+						<TableColumn>Tier</TableColumn>
+						<TableColumn>Name</TableColumn>
+						<TableColumn>Team</TableColumn>
+						<TableColumn>POS</TableColumn>
+						<TableColumn>Age</TableColumn>
+						<TableColumn>Year</TableColumn>
+					</TableHeader>
+					<TableBody>
+						{players.map((player) => {
+							if (
+								player['TEAM'] === selectedValue &&
+								player['position'].substring(0, 2) === 'TE'
+							) {
+								return (
+									<TableRow
+										className={'bg-purple-100'}
+										key={player['name']}
+										selected={true}>
+										<TableCell>{player['average_rank']}</TableCell>
+										<TableCell>{player['tier']}</TableCell>
+										<TableCell>{player['name']}</TableCell>
+										<TableCell>{player['TEAM']}</TableCell>
+										<TableCell>{player['position']}</TableCell>
+										<TableCell>{player['age']}</TableCell>
+										<TableCell>{player['year']}</TableCell>
+									</TableRow>
+								);
+							}
 						})}
 					</TableBody>
 				</Table>

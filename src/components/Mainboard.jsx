@@ -1,5 +1,6 @@
-import { React, useEffect, useState, useMemo, useCallback } from 'react';
+import { React, useEffect, useState } from 'react';
 import useStore from '../store';
+import Info from '../../json/playerInfo.json';
 
 import {
 	Table,
@@ -14,7 +15,6 @@ import {
 export default function Mainboard() {
 	const rowColor = ['bg-orange-100', 'bg-blue-100', 'bg-lime-100', 'bg-purple-100'];
 	const players = useStore((state) => state.players);
-	const playersInfo = useStore((state) => state.playersInfo);
 	const setDraftedPlayers = useStore((state) => state.setDraftedPlayers);
 
 	const [selectedKeys, setSelectedKeys] = useState(
@@ -25,7 +25,7 @@ export default function Mainboard() {
 		)
 	);
 
-	const mainboardPlayers = [...players];
+	// const mainboardPlayers = [...players];
 
 	useEffect(() => {
 		setDraftedPlayers(selectedKeys);
@@ -40,10 +40,9 @@ export default function Mainboard() {
 				selectionMode="multiple"
 				aria-label="Example static collection table"
 				onSelectionChange={setSelectedKeys}
-				selectedKeys={selectedKeys}
-				// topContent={topContent}
-			>
-				<TableHeader>
+				selectedKeys={selectedKeys}>
+				{/* Below is for Using Fantasy Pros rankings  */}
+				{/* <TableHeader>
 					<TableColumn>Tier</TableColumn>
 					<TableColumn>Name</TableColumn>
 					<TableColumn>Team</TableColumn>
@@ -51,14 +50,24 @@ export default function Mainboard() {
 					<TableColumn>Age</TableColumn>
 					<TableColumn>Year</TableColumn>
 					<TableColumn>BYE</TableColumn>
+				</TableHeader> */}
+				<TableHeader>
+					<TableColumn>Rank</TableColumn>
+					<TableColumn>Tier</TableColumn>
+					<TableColumn>Name</TableColumn>
+					<TableColumn>Team</TableColumn>
+					<TableColumn>POS</TableColumn>
+					<TableColumn>Age</TableColumn>
+					<TableColumn>Year</TableColumn>
 				</TableHeader>
 				<TableBody>
-					{mainboardPlayers.map((player) => {
+					{/* Below is for Using Fantasy Pros rankings  */}
+					{/* {mainboardPlayers.map((player) => {
 						const color = rowColor[player['TIERS'] % 4];
 						let age = 0;
 						let year = 0;
 
-						for (let i of playersInfo) {
+						for (let i of Info) {
 							if (
 								i['player'].replace(/ /g, '').toLowerCase() ===
 								player['PLAYER NAME'].replace(/ /g, '').toLowerCase()
@@ -79,7 +88,23 @@ export default function Mainboard() {
 									<TableCell>{player['BYE WEEK']}</TableCell>
 								</TableRow>
 							);
-						}
+						} 
+					})} */}
+
+					{players.map((player) => {
+						const color = rowColor[player['tier'] % 4];
+
+						return (
+							<TableRow className={color} key={player['name']} selected={true}>
+								<TableCell>{player['average_rank']}</TableCell>
+								<TableCell>{player['tier']}</TableCell>
+								<TableCell>{player['name']}</TableCell>
+								<TableCell>{player['TEAM']}</TableCell>
+								<TableCell>{player['position']}</TableCell>
+								<TableCell>{player['age']}</TableCell>
+								<TableCell>{player['year']}</TableCell>
+							</TableRow>
+						);
 					})}
 				</TableBody>
 			</Table>

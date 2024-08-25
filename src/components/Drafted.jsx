@@ -6,31 +6,10 @@ import {
 	TableBody,
 	TableRow,
 	TableCell,
-	Input,
-	getKeyValue,
 } from '@nextui-org/react';
 
 export default function Drafted() {
 	const draftedPlayers = useStore((state) => state.draftedPlayers);
-	// const [filterValue, setFilterValue] = React.useState("");
-
-	// const topContent = React.useMemo(() => {
-	// 	return (
-	// 		<div className="flex flex-col gap-4">
-	// 			<div className="flex justify-between gap-3 items-end">
-	// 				<Input
-	// 					isClearable
-	// 					className="w-full sm:max-w-[44%]"
-	// 					placeholder="Search by name..."
-	// 					startContent={<SearchIcon />}
-	// 					value={filterValue}
-	// 					onClear={() => onClear()}
-	// 					onValueChange={onSearchChange}
-	// 				/>
-	// 			</div>
-	// 		</div>
-	// 	);
-	// }, [filterValue, onSearchChange]);
 
 	return (
 		<section>
