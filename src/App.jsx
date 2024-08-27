@@ -9,6 +9,7 @@ import useStore from './store';
 import { React, useEffect } from 'react';
 import { Tabs, Tab } from '@nextui-org/react';
 import Info from '../json/playerInfo.json';
+import Rankings from '../json/rankings.json';
 
 function App() {
 	const setPlayers = useStore((state) => state.setPlayers);
@@ -30,14 +31,15 @@ function App() {
 
 		// This is for using boris chen rankings via Jay Zheng's API
 		try {
-			const response = await fetch(
-				'https://jayzheng-ff-api.herokuapp.com/rankings?format=half_ppr'
-			);
-			if (!response.ok) {
-				throw new Error(`Response status: ${response.status}`);
-			}
-			const json = await response.json();
-			let mainboardPlayers = [...json['rankings']];
+			// const response = await fetch(
+			// 	'https://jayzheng-ff-api.herokuapp.com/rankings?format=half_ppr'
+			// );
+			// if (!response.ok) {
+			// 	throw new Error(`Response status: ${response.status}`);
+			// }
+			// const json = await response.json();
+
+			let mainboardPlayers = [...Rankings['rankings']];
 
 			mainboardPlayers.forEach((player) => {
 				for (let i of Info) {
